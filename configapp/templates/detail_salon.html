@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Salon Tafsilotlari</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <!-- Custom CSS -->
+  <style>
+    body {
+      background-color: #f2f4f7;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .card {
+      max-width: 800px;
+      margin: 60px auto;
+      border-radius: 15px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+      background-color: white;
+    }
+
+    .card img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+
+    .card-title {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .card-text {
+      color: #555;
+      margin-top: 10px;
+    }
+
+    .list-group-item {
+      background-color: #fafafa;
+      border: none;
+      font-size: 1rem;
+    }
+
+    .card-link {
+      text-decoration: none;
+      color: #0d6efd;
+      transition: color 0.2s;
+    }
+
+    .card-link:hover {
+      color: #084298;
+    }
+
+    .btn-back {
+      margin-top: 20px;
+    }
+
+    @media (max-width: 576px) {
+      .card {
+        margin: 30px 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Card Section -->
+  <div class="card">
+    {% if item.image %}
+      <img src="{{ salon.image.url }}" alt="Salon rasmi" />
+    {% else %}
+      <img src="https://picsum.photos/800/300" alt="Tasodifiy rasm" />
+    {% endif %}
+
+    <div class="card-body">
+      <h5 class="card-title">{{ salon.title }}</h5>
+      <p class="card-text">{{ salon.context }}</p>
+    </div>
+
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"><strong>Telefon:</strong> {{ salon.phone }}</li>
+      <li class="list-group-item"><strong>Email:</strong> {{ salon.email }}</li>
+      <li class="list-group-item"><strong>Manzil:</strong> {{ salon.address }}</li>
+    </ul>
+
+    <div class="card-body">
+      <a href="{% url 'salon_cars' 1 salon.pk %}" class="card-link">Mashinalarni ko‘rish</a>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

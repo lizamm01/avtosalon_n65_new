@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{{ car.brand.title }} {{ car.model }}</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="p-4">
+  <div class="container">
+    <h1>{{ car.brand.title }} {{ car.model }}</h1>
+
+    {% if car.image %}
+      <img src="{{ car.image.url }}" alt="{{ car.model }}" class="img-fluid mb-3" style="max-width:400px;">
+    {% else %}
+      <div class="mb-3 p-5 bg-light text-muted">Rasm mavjud emas</div>
+    {% endif %}
+
+    <ul class="list-group mb-3" style="max-width:700px;">
+      <li class="list-group-item"><strong>Yil:</strong> {{ car.year }}</li>
+      <li class="list-group-item"><strong>Rang:</strong> {{ car.color }}</li>
+      <li class="list-group-item"><strong>Narx:</strong> {{ car.price }}</li>
+      <li class="list-group-item"><strong>Salon:</strong> {{ car.salon.title }} — {{ car.salon.phone }}</li>
+    </ul>
+
+    <a href="{% url 'car_pdf' car.pk %}" class="btn btn-primary">Batafsil (PDF)</a>
+    <a href="{% url 'salon_cars' car.brand.pk car.salon.pk %}" class="btn btn-outline-secondary">Ortga</a>
+  </div>
+</body>
+</html>
